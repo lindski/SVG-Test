@@ -49,6 +49,7 @@ nav {
   position: fixed;
   right: 0px;
   top: 10vh;
+  overflow: auto;
 }
 #paper {
   width:100%;
@@ -63,5 +64,9 @@ li {
 }
 
 li>input {
+  width: 100%;
+}
+
+li>textarea {
   width: 100%;
 }
