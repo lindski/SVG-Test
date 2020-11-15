@@ -105,10 +105,10 @@ class Paper extends React.Component {
         this.state.pausePanning = true;
         var point = new fabric.Point(e.self.x, e.self.y);
         if (e.self.state == "start") {
-          this.state.zoomStartScale = self.paper.getZoom();
+          this.state.zoomStartScale = paper.getZoom();
         }
         var delta = this.state.zoomStartScale * e.self.scale;
-        self.paper.zoomToPoint(point, delta);
+        paper.zoomToPoint(point, delta);
         this.state.pausePanning = false;
     }
   }
@@ -123,7 +123,7 @@ class Paper extends React.Component {
         this.state.mdp = null;
       }
       else {
-        var delta = new fabric.Point(e.self.x - mdp.x, e.self.y - mdp.y);
+        var delta = new fabric.Point(e.self.x - this.state.mdp.x, e.self.y - this.state.mdp.y);
         if( (Math.abs(delta.x) <= 50) && (Math.abs(delta.y) <= 50)) {
             paper.relativePan(delta);
         }
@@ -285,7 +285,7 @@ class Paper extends React.Component {
     paper.on('mouse:up', this.onMouseUp.bind(this));
     paper.on('mouse:move', this.updateViewBoxPosition);
     paper.on('touch:gesture', this.onTouchGesture.bind(this));
-    paper.on('touch:drag', this.onTouchGesture.bind(this));
+    paper.on('touch:drag', this.onTouchDrag.bind(this));
     paper.on('selection:created', this.onSelectionCreated.bind(this));
     paper.on('selection:updated', this.onSelectionUpdated.bind(this));
     paper.on('selection:cleared', this.onSelectionCleared.bind(this));
